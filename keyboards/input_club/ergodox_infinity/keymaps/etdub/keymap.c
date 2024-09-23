@@ -7,6 +7,7 @@
 #define L0 0 // default layer
 #define L1 1
 #define L2 2
+#define L3 3
 
 // Left-hand home row mods
 #define HOME_A LGUI_T(KC_A)
@@ -81,9 +82,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *    +-------+-----+-----+-----+-----+-----+L1/L2|
  *    | LSHIFT|  Z  |  X  |  C  |  V  |  B  |     |
  *    +-+-----+-----+-----+-----+-----+-----+-----+
- *      |LGUI |  `  |  \  |LEFT |RIGHT|
+ *      |LGUI |  `  |  \  |LEFT | L3  |
  *      +-----+-----+-----+-----+-----+   +-----+-----+
- *                                        |LCTRL| LALT|
+ *                                        |LCTRL| ALT  |
  *                                  +-----+-----+-----+
  *                                  |     |     | HOME|
  *                                  |BKSPC| DEL +-----+
@@ -94,7 +95,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_BSLS, KC_Q,   KC_W,    KC_E,    KC_R,    KC_T, KC_TRNS,
         KC_TAB,  HOME_A, HOME_S,  HOME_D,  HOME_F,  KC_G,
         KC_LSFT, KC_Z,   KC_X,    KC_C,    KC_V,    KC_B, TD(TD_LAYER_TG),
-        KC_LGUI, KC_GRV, KC_BSLS, KC_LEFT, KC_RGHT,
+        KC_LGUI, KC_GRV, KC_BSLS, KC_LEFT, OSL(L3),
                                                       TD(TD_CTL), KC_LALT,
                                                                KC_HOME,
                                              KC_BSPC, KC_DEL,  KC_END,
@@ -108,9 +109,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *        |L1/L2+-----+-----+-----+-----+-----+-------+
  *        |     |  N  |  M  |  ,  |  .  |  /  | RSHIFT|
  *        +-----+-----+-----+-----+-----+-----+-----+-+
- *                    |LEFT |DOWN | UP  |RIGHT| RGUI|
+ *                    |L2   |DOWN | UP  |RIGHT| RGUI|
  *    +-----+-----+   +-----+-----+-----+-----+-----+
- *    | RALT|RCTRL|
+ *    | ALT |RCTRL|
  *    +-----+-----+-----+==========================================================================
  *    | PGUP|     |     |
  *    +-----+ ENT | SPC |
@@ -121,7 +122,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
              KC_LBRC, KC_Y,   KC_U,    KC_I,    KC_O,   KC_P,     KC_RBRC,
                       KC_H,  HOME_J,  HOME_K,  HOME_L, HOME_SCLN,  KC_QUOT,
              TD(TD_LAYER_TG),  KC_N,   KC_M,    KC_COMM, KC_DOT, KC_SLSH,  KC_RSFT,
-                              KC_LEFT, KC_DOWN, KC_UP,  KC_RIGHT, KC_RGUI,
+                              OSL(L2), KC_DOWN, KC_UP,  KC_RIGHT, KC_RGUI,
              KC_RALT, TD(TD_CTL),
              KC_PGUP,
              KC_PGDN, KC_ENT, KC_SPC
@@ -221,7 +222,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *        |     +-----+-----+-----+-----+-----+-------+
  *        |     |     | P1  | P2  | P3  |PENT |       |
  *        +-----+-----+-----+-----+-----+-----+-----+-+
- *                    |     |     | P.  |PENT |     |
+ *                    | L2  |     | P.  |PENT |     |
  *    +-----+-----+   +-----+-----+-----+-----+-----+
  *    |     |     |
  *    +-----+-----+-----+
@@ -234,10 +235,66 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_TRNS,  KC_TRNS, KC_KP_7,    KC_KP_8,     KC_KP_9,        KC_KP_PLUS,  KC_TRNS,
                  KC_TRNS, KC_KP_4,    KC_KP_5,     KC_KP_6,        KC_KP_PLUS,  KC_TRNS,
        KC_TRNS,  KC_TRNS, KC_KP_1,    KC_KP_2,     KC_KP_3,        KC_KP_ENTER, KC_TRNS,
-                          KC_TRNS,    KC_TRNS,     KC_KP_DOT,      KC_KP_ENTER, KC_TRNS,
+                          TG(L2),    KC_TRNS,     KC_KP_DOT,      KC_KP_ENTER, KC_TRNS,
        KC_TRNS, KC_TRNS,
        KC_TRNS,
        KC_TRNS, KC_TRNS, KC_KP_0
+),
+[L3] = LAYOUT_ergodox( // symbols!
+/* Left hand
+ *    +-------+-----+-----+-----+-----+-----+-----+
+ *    |       |     |     |     |     |     |     |
+ *    +-------+-----+-----+-----+-----+-----+-----+
+ *    |       |  '  |  <  |  >  |  "  |  .  |     |
+ *    +-------+-----+-----+-----+-----+-----+     |
+ *    |       |  !  |  -  |  +  |  =  |  #  +-----+
+ *    +-------+-----+-----+-----+-----+-----+     |
+ *    |       |  _  |  /  |  *  |  \  |  ^  |     |
+ *    +-+-----+-----+-----+-----+-----+-----+-----+
+ *      |     |     |     |     |     |
+ *      +-----+-----+-----+-----+-----+   +-----+-----+
+ *                                        |     | L0  |
+ *                                  +-----+-----+-----+
+ *                                  |     |     |     |
+ *                                  |     |     +-----+
+ *                                  |     |     |     |
+ *                                  +-----+-----+-----+
+ */
+       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+       KC_TRNS, KC_QUOT, KC_LABK, KC_RABK, KC_DQUO, KC_DOT,  KC_TRNS,
+       KC_TRNS, KC_EXLM, KC_MINS, KC_PLUS, KC_EQL,  KC_HASH,
+       KC_TRNS, KC_UNDS, KC_SLSH, KC_ASTR, KC_BSLS, KC_CIRC, KC_TRNS,
+       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, TG(L3),
+                                           KC_TRNS, KC_TRNS,
+                                                    KC_TRNS,
+                                  KC_TRNS, KC_TRNS, KC_TRNS,
+/* right hand
+ *        +-----+-----+-----+-----+-----+-----+-------+
+ *        |     |     |     |     |     |     |       |
+ *        +-----+-----+-----+-----+-----+-----+-------+
+ *        |     |  &  |  `  |  [  |  ]  |  %  |       |
+ *        |     +-----+-----+-----+-----+-----+-------+
+ *        +-----+  |  |  :  |  (  |  )  |  ?  |       |
+ *        |     +-----+-----+-----+-----+-----+-------+
+ *        |     |  ~  |  $  |  {  |  }  |  @  |       |
+ *        +-----+-----+-----+-----+-----+-----+-----+-+
+ *                    |     |     |     |     |     |
+ *    +-----+-----+   +-----+-----+-----+-----+-----+
+ *    |  L0 |     |
+ *    +-----+-----+-----+
+ *    |     |     |     |
+ *    +-----+     |     |
+ *    |     |     |     |
+ *    +-----+-----+-----+
+ */
+       KC_TRNS,  KC_TRNS, KC_TRNS,    KC_TRNS,     KC_TRNS,        KC_TRNS, KC_TRNS,
+       KC_TRNS,  KC_AMPR, KC_GRV,     KC_LBRC,     KC_RBRC,        KC_PERC, KC_TRNS,
+                 KC_PIPE, KC_COLN,    KC_LPRN,     KC_RPRN,        KC_QUES, KC_TRNS,
+       KC_TRNS,  KC_TILD, KC_DLR,     KC_LCBR,     KC_RCBR,        KC_AT,   KC_TRNS,
+                          TG(L3),    KC_TRNS,     KC_TRNS,        KC_TRNS, KC_TRNS,
+       KC_TRNS, KC_TRNS,
+       KC_TRNS,
+       KC_TRNS, KC_TRNS, KC_TRNS
 ),
 };
 
@@ -311,6 +368,7 @@ void td_toggle_layers(tap_dance_state_t *state, void *user_data) {
         case (TD_TRIPLE_TAP):
            layer_off(L1);
            layer_off(L2);
+           layer_off(L3);
         default:
             break;
     }
