@@ -6,8 +6,9 @@
 
 #define L0 0 // default layer
 #define L1 1
-#define L2 2
-#define L3 3
+#define L2 2 // numbers
+#define L3 3 // symbols
+#define L4 4 // navigation
 
 // Left-hand home row mods
 #define HOME_A LGUI_T(KC_A)
@@ -88,7 +89,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                  +-----+-----+-----+
  *                                  |     |     | HOME|
  *                                  |BKSPC| DEL +-----+
- *                                  |     |     | END |
+ *                                  | NUM | NAV | END |
  *                                  +-----+-----+-----+
  */
         KC_EQL,  KC_1,   KC_2,    KC_3,    KC_4,    KC_5, KC_ESC,
@@ -98,7 +99,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LGUI, KC_GRV, KC_BSLS, KC_LEFT, OSL(L3),
                                                       TD(TD_CTL), KC_LALT,
                                                                KC_HOME,
-                                             KC_BSPC, KC_DEL,  KC_END,
+                                             LT(L2,KC_BSPC), LT(L4,KC_DEL),  KC_END,
 /* right hand
  *        +-----+-----+-----+-----+-----+-----+-------+
  *        |     |  6  |  7  |  8  |  9  |  0  |   -   |
@@ -115,7 +116,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *    +-----+-----+-----+==========================================================================
  *    | PGUP|     |     |
  *    +-----+ ENT | SPC |
- *    | PGDN|     |     |
+ *    | PGDN| NAV |     |
  *    +-----+-----+-----+
  */
              KC_TRNS,  KC_6,   KC_7,    KC_8,    KC_9,   KC_0,     KC_MINS,
@@ -125,7 +126,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                               OSL(L2), KC_DOWN, KC_UP,  KC_RIGHT, KC_RGUI,
              KC_RALT, TD(TD_CTL),
              KC_PGUP,
-             KC_PGDN, KC_ENT, KC_SPC
+             KC_PGDN, LT(L4,KC_ENT), KC_SPC
     ),
 
 [L1] = LAYOUT_ergodox( // layer 1 : function layers
@@ -296,6 +297,62 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_TRNS,
        KC_TRNS, KC_TRNS, KC_TRNS
 ),
+[L4] = LAYOUT_ergodox( // Nav
+/* Left hand
+ *    +-------+-----+-----+-----+-----+-----+-----+
+ *    |       |     |     |     |     |     |     |
+ *    +-------+-----+-----+-----+-----+-----+-----+
+ *    |       |     |     |     |     |     |     |
+ *    +-------+-----+-----+-----+-----+-----+     |
+ *    |       | PGUP| HOME| END | PGDN|     +-----+
+ *    +-------+-----+-----+-----+-----+-----+     |
+ *    |       |     |     |     |     |     |     |
+ *    +-+-----+-----+-----+-----+-----+-----+-----+
+ *      |     |     |     |     |     |
+ *      +-----+-----+-----+-----+-----+   +-----+-----+
+ *                                        |     |     |
+ *                                  +-----+-----+-----+
+ *                                  |     |     |     |
+ *                                  |     |     +-----+
+ *                                  |     |     |     |
+ *                                  +-----+-----+-----+
+ */
+       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+       KC_TRNS, KC_PGUP, KC_HOME, KC_END,  KC_PGDN, KC_TRNS,
+       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+                                           KC_TRNS, KC_TRNS,
+                                                    KC_TRNS,
+                                  KC_TRNS, KC_TRNS, KC_TRNS,
+/* right hand
+ *        +-----+-----+-----+-----+-----+-----+-------+
+ *        |     |     |     |     |     |     |       |
+ *        +-----+-----+-----+-----+-----+-----+-------+
+ *        |     |     |     |     |     |     |       |
+ *        |     +-----+-----+-----+-----+-----+-------+
+ *        +-----+  <  |  v  |  ^  |  >  |     |       |
+ *        |     +-----+-----+-----+-----+-----+-------+
+ *        |     |     |     |     |     |     |       |
+ *        +-----+-----+-----+-----+-----+-----+-----+-+
+ *                    |     |     |     |     |     |
+ *    +-----+-----+   +-----+-----+-----+-----+-----+
+ *    |     |     |
+ *    +-----+-----+-----+
+ *    |     |     |     |
+ *    +-----+     |     |
+ *    |     |     |     |
+ *    +-----+-----+-----+
+ */
+       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+                KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_TRNS, KC_TRNS,
+       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+                         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+       KC_TRNS, KC_TRNS,
+       KC_TRNS,
+       KC_TRNS, KC_TRNS, KC_TRNS
+),
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -372,7 +429,7 @@ void td_toggle_layers(tap_dance_state_t *state, void *user_data) {
         default:
             break;
     }
-} 
+}
 
 void td_ctl_finished(tap_dance_state_t *state, void *user_data) {
     switch (cur_dance(state)) {
