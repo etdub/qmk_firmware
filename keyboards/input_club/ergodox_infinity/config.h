@@ -84,14 +84,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define NO_ACTION_TAPPING
 //#define NO_ACTION_ONESHOT
 
-#define TAPPING_TERM 160
+#define TAPPING_TERM 170
 #define PERMISSIVE_HOLD
 
 #define ONESHOT_TAP_TOGGLE 3  /* Tapping this number of times holds the key until tapped once again. */
 #define ONESHOT_TIMEOUT 5000  /* Time (in ms) before the one shot key is released */
 
-#define SPLIT_USB_DETECT
-#define SPLIT_USB_TIMEOUT 5000
-#define SPLIT_USB_TIMEOUT_POLL 10
-#define SPLIT_WATCHDOG_ENABLE
-#define USB_SUSPEND_TIMEOUT 5000
+//#define SPLIT_USB_DETECT
+//#define SPLIT_USB_TIMEOUT 5000
+//#define SPLIT_USB_TIMEOUT_POLL 10
+//#define SPLIT_WATCHDOG_ENABLE
+//#define USB_SUSPEND_TIMEOUT 5000

@@ -120,6 +120,15 @@
         "enabled": true,
         "serial": {
             "driver": "usart"
+        },
+        "usb_detect": {
+            "enabled": true,
+            "polling_interval": 10,
+            "timeout": 2000
+        },
+        "transport": {
+            "watchdog": true,
+            "watchdog_timeout": 3000
         }
     },
     "processor": "MK20DX256",
